@@ -1,0 +1,26 @@
+/* @import "../../../styles/variable.css";
+@import "../../../styles/common.css"; */
+.socialLinks {
+  position: absolute;
+  bottom: 55px;
+  right: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.socialItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 14px 13px;
+  width: 45px;
+  height: 45px;
+  border-radius: 27px;
+  border: 1px solid var(--redbgstroke);
+  background-color: var(--redbgstroke);
+  cursor: pointer;
+}
+
+.socialItem:hover {
+  opacity: 0.8;
+}

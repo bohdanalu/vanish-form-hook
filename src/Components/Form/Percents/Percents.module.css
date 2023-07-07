@@ -1,0 +1,15 @@
+.itemPercent {
+  padding: 13px 42px;
+  border-radius: 38px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--txt-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.itemPercent:hover {
+  color: var(--tsx-color);
+  border-color: var(--red-txt);
+  box-shadow: 0 0 10px var(--red-txt);
+}

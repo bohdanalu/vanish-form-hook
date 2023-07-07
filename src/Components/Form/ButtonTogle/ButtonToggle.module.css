@@ -1,0 +1,28 @@
+/* @import "../../../styles/variable.css";
+@import "../../../styles/common.css"; */
+.frameBtns {
+  height: 40px;
+  border-radius: 38px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  background: #0c0c0c;
+}
+
+.btnToggle {
+  height: 32px;
+  width: 50%;
+  border-radius: 25px;
+  border: transparent;
+  background: transparent;
+  color: #8e959e;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.9;
+  cursor: pointer;
+}
+
+.btnToggle.active {
+  background: var(--bg-secondary);
+  color: var(--txt);
+  box-shadow: 0px 1px 2px 0px rgba(31, 32, 39, 0.06);
+}

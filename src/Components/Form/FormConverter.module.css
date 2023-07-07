@@ -1,0 +1,35 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.span {
+  color: var(--txt-color);
+}
+
+.btnMax {
+  position: absolute;
+  right: 35px;
+  top: 55px;
+  background-color: var(--bg-input);
+  border: transparent;
+  color: var(--red-txt);
+  color: var(--red-txt);
+  text-align: center;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btnMax:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.listPer {
+  display: flex;
+  justify-content: space-between;
+}

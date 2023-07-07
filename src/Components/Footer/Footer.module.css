@@ -1,0 +1,9 @@
+@import "../../styles//variable.css";
+@import "../../styles/common.css";
+.footer {
+  flex: 0 0 auto;
+}
+.wrapper {
+  padding: 36px;
+  position: relative;
+}

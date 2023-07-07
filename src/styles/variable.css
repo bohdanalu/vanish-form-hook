@@ -1,0 +1,15 @@
+:root {
+  --txt-color: rgb(255, 255, 255);
+  --txt-secondary: rgba(255, 255, 255, 0.502);
+  --txt-opacity: rgba(255, 255, 255, 0.6);
+  --redbgstroke: rgba(254, 32, 31, 0.231);
+  --red-bg-button: rgba(254, 32, 31, 0.09);
+  --red-txt: rgb(254, 32, 31);
+  --bg-input: rgba(20, 20, 20, 0.702);
+  --bg: rgb(28, 28, 28);
+  --bg-secondary: rgb(29, 29, 29);
+  --bg-block: rgb(12, 12, 12)
+  --txt-nav: rgb(172, 183, 213);
+  --border: rgba(255, 255, 255, 0.102);
+  --linear: linear-gradient(128deg, rgb(254, 32, 31), 100%);
+}

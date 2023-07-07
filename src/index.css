@@ -1,0 +1,102 @@
+@import "./styles/variable.css";
+@import "./styles/common.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@font-face {
+  font-family: "chinese-rocks-regular", sans-serif;
+  src: local("Chinese Rock"),
+    url("./fonts/chinese-rocks-free.rg-regular.woff") format("truetype");
+  font-weight: 400;
+}
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+address,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+article,
+footer,
+header,
+menu,
+nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--txt-color);
+}
+
+.main {
+  flex: 1 0 auto;
+  padding: 40px 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
