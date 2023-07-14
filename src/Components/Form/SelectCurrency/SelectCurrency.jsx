@@ -1,45 +1,64 @@
 import React from "react";
+import { useController } from "react-hook-form";
 import DropDown from "../DropDown/DropDown";
 
-function SelectCurrency({ values, setValuesCurrency }) {
-  const { id, name, type, readOnly, label, value } = values;
-
+export const SelectCurrencyField = ({
+  label,
+  value,
+  name,
+  onChange,
+  readOnly,
+  className,
+}) => {
   const handleCurrencyChange = (currency) => {
-    setValuesCurrency((prevValues) => {
-      const updatedValues = prevValues.map((item) =>
-        item.id === id
-          ? { ...item, value: `${currency.name} (${currency.code})` }
-          : item
-      );
-      console.log(updatedValues);
-      return updatedValues;
-    });
+    onChange(`${currency.name} (${currency.code})`);
   };
+
   const handleInputFocus = () => {
-    const dropdown = document.getElementById(id);
+    const dropdown = document.getElementById(name);
     if (dropdown) {
       dropdown.click();
     }
   };
 
   return (
-    <div className={`${id === "to" ? "inputBlock to" : "inputBlock"}`}>
-      <label htmlFor={name} className="label">
-        {label}
-      </label>
+    <div className={`inputBlock ${className ? className : ""}`}>
+      <label className="label">{label}</label>
       <input
-        name={name}
         className="input"
-        type={type}
+        name={name}
         style={{ textAlign: "right", color: "var(--txt-opacity)" }}
-        value={value}
-        onChange={handleCurrencyChange}
         onFocus={handleInputFocus}
         readOnly={readOnly}
+        value={value}
       />
-      <DropDown dataId={id} onSelectCurrency={handleCurrencyChange} />
+      <DropDown dataId={name} onSelectCurrency={handleCurrencyChange} />
     </div>
   );
-}
+};
 
-export default SelectCurrency;
+export const SelectCurrencyFieldController = ({
+  control,
+  name,
+  label,
+  className,
+}) => {
+  const {
+    field: { onChange, onBlur, value },
+    fieldState: { error },
+  } = useController({
+    name,
+    control,
+  });
+
+  return (
+    <SelectCurrencyField
+      label={label}
+      value={value}
+      name={name}
+      onChange={onChange}
+      className={className}
+      onBlur={onBlur}
+    />
+  );
+};
