@@ -3,7 +3,7 @@ import Option from "./Options/Option";
 import styles from "./DropDown.module.css";
 import { currencies } from "../../../constants";
 
-function DropDown({ dataId, onSelectCurrency }) {
+export const DropDown = ({ dataId, onSelectCurrency }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownValue, setDropdownValue] = useState(currencies[0]);
 
@@ -28,9 +28,7 @@ function DropDown({ dataId, onSelectCurrency }) {
         className={`${styles.dropdownToggle} ${isOpen ? styles.open : ""}`}
         onClick={toggleDropdown}
       >
-        {/* <img src="/images/icons/Ethereum.png" alt="Currency Icon" /> */}
         <img src={dropdownValue.img} alt={dropdownValue.name} />
-
         <span>{dropdownValue.code}</span>
       </div>
       {isOpen && (
@@ -46,6 +44,6 @@ function DropDown({ dataId, onSelectCurrency }) {
       )}
     </div>
   );
-}
+};
 
 export default DropDown;

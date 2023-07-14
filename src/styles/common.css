@@ -54,6 +54,29 @@ form {
   margin-bottom: 25px;
 }
 
+.inputBlock.stake {
+  font-size: 16px;
+}
+
+.inputBlock.stake label {
+  color: var(--txt-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.inputBlock.stake input {
+  height: 48px;
+  padding: 4px 55px 4px 110px;
+  border-radius: 38px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.inputBlock.stake .btnMax {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.7;
+}
 .inputBlock.to {
   flex-direction: column-reverse;
 }
@@ -81,5 +104,29 @@ form {
 
 .error {
   font-size: 13px;
+  position: absolute;
   color: var(--red-txt);
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnMax {
+  background-color: var(--bg-input);
+  border: transparent;
+  color: var(--red-txt);
+  text-align: center;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btnMax:hover {
+  opacity: 0.9;
+  transition: transform 0.3s ease;
 }

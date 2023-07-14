@@ -1,27 +1,55 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormStake.module.css";
-import ButtonToggle from "./ButtonTogle/ButtonToggle";
+import { SwitchFieldController } from "./ButtonTogle/ButtonToggle";
 import Tooltip from "./Tooltip/Tooltip";
+import { TextFieldController } from "./TextField/TextField";
+import { formatNumber } from "../../utils/FormatNumber";
 
 function FormStake() {
-  const [avaliable, setAvaliable] = useState(5000000);
+  const available = 5000000;
+  const schema = useMemo(() => {
+    return yup.object({
+      amount: yup
+        .number()
+        .typeError("This field is required")
+        .min(0.00001, "Amount should be bigger than 0.00001")
+        .max(available, `Amount should not be bigger than ${available}`)
+        .required("This field is required"),
+    });
+  }, [available]);
+
   const {
-    register,
     handleSubmit,
     setValue,
+    formState: { errors, isSubmitting },
     watch,
-    formState: { errors },
-  } = useForm();
+    control,
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      stake: true,
+      amount: "",
+    },
+  });
 
-  const onSubmit = (data) => {
-    console.log(register);
-    alert(JSON.stringify(data));
+  const stakeUnstake = async (values) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   };
+
+  const stake = watch("stake");
+  const amount = watch("amount");
+
+  // const handelGetPercentage = (percentage) => {
+  //   let amount = (percentage * parseFloat(available)) / 100;
+  //   setValue("amount", amount);
+  // };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(stakeUnstake)}
       style={{ display: "flex", flexDirection: "column", gap: "25px" }}
     >
       <div className="headerForm" style={{ marginBottom: "15px" }}>
@@ -41,42 +69,40 @@ function FormStake() {
         </div>
         <span className={styles.time}>2d 23h 48m</span>
       </div>
-      <ButtonToggle />
-      <div className={styles.inputBlock}>
-        <div>
-          <div className={styles.flex}>
-            <label htmlFor="amount" className={styles.spanAmount}>
-              Amount
-            </label>
-            <span className={styles.label}>
-              Avaliable:
-              <span className={styles.spanNum}>
-                {" "}
-                {avaliable.toLocaleString("en-US")}
-              </span>{" "}
-            </span>
-          </div>
-        </div>
-        <input
-          className={styles.input}
-          type="number"
-          {...register("amount", { min: 0.00001, max: avaliable })}
-          defaultValue="10000"
-        />
-        {errors.amount && (
-          <span className="error">
-            {errors.amount.type === "required"
-              ? "Amount is required"
-              : errors.amount.type < 0.00001
-              ? "Amount should be greater than or equal to 0.00001"
-              : errors.amount.type > avaliable
-              ? "Amount should not exceed ${avaliable}"
-              : ""}
-          </span>
-        )}
-        <span className={styles.spanVanish}>$VANISH</span>
-        <button className={styles.btnMax}>Max</button>
-      </div>
+      <SwitchFieldController
+        name="stake"
+        control={control}
+        options={[
+          { value: true, title: "Stake" },
+          { value: false, title: "Unstake" },
+        ]}
+      />{" "}
+      <TextFieldController
+        label="Amount"
+        name="amount"
+        type="number"
+        placeholder="Enter amount"
+        control={control}
+        value={amount}
+        className="stake"
+        helpText={
+          <>
+            <span className={styles.subtitle}>Available:</span>{" "}
+            <span>{formatNumber(available)}</span>
+          </>
+        }
+        prepend={<span className="spanVanish">$VANISH</span>}
+        append={
+          <>
+            <div
+              className="btnMax"
+              onClick={() => setValue("amount", available)}
+            >
+              Max
+            </div>
+          </>
+        }
+      />
       <div className={styles.blockTotal}>
         <div className={styles.frameTotal}>
           <span className={styles.subtitle}>APR</span>

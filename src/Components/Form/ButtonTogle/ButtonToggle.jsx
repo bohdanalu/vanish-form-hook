@@ -1,38 +1,52 @@
 import React, { useState } from "react";
 import styles from "./ButtonToggle.module.css";
 
-function ButtonToggle() {
-  const [stakeActive, setStakeActive] = useState(true);
-  const [unstakeActive, setUnstakeActive] = useState(false);
+import { useController } from "react-hook-form";
 
-  const handleStakeClick = (event) => {
-    event.preventDefault();
-    setStakeActive(true);
-    setUnstakeActive(false);
-  };
-
-  const handleUnstakeClick = (event) => {
-    event.preventDefault();
-    setStakeActive(false);
-    setUnstakeActive(true);
-  };
-
+export const SwitchField = ({ value, onChange, options }) => {
   return (
     <div className={styles.frameBtns}>
-      <button
-        className={`${styles.btnToggle} ${stakeActive ? styles.active : ""}`}
-        onClick={handleStakeClick}
-      >
-        Stake
-      </button>
-      <button
-        className={`${styles.btnToggle} ${unstakeActive ? styles.active : ""}`}
-        onClick={handleUnstakeClick}
-      >
-        Unstake
-      </button>
+      {options.map((o, idx) => (
+        <div
+          className={`${styles.btnToggle} ${value === o.value ? "active" : ""}`}
+          style={{
+            background:
+              value === o.value ? "var(--bg-secondary)" : "transparent",
+            color: value === o.value ? "var(--txt-color)" : "#8e959e",
+          }}
+          key={idx}
+          onClick={() => onChange(o.value)}
+        >
+          {o.title}
+        </div>
+      ))}
     </div>
   );
-}
+};
 
-export default ButtonToggle;
+export const SwitchFieldController = ({
+  control,
+  name,
+  label,
+  className,
+  options,
+  ...rest
+}) => {
+  const {
+    field: { onChange, value },
+  } = useController({
+    name,
+    control,
+  });
+
+  return (
+    <SwitchField
+      value={value}
+      name={name}
+      onChange={onChange}
+      className={className}
+      options={options}
+      {...rest}
+    />
+  );
+};
